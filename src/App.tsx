@@ -1,12 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
 import './App.css';
-import Dashboard from './features/dashboard/Dashboard';
+import { Route, Routes, Navigate } from 'react-router-dom';
+import { CHALLENGE_URI, DASHBOARD_URI, HOME_URI } from './constants/routes';
+import DashBoard from './pages/dashboard';
+import MainLayout from './components/Layout/MainLayout';
+import Challenge from './pages/challenge';
 
 function App() {
   return (
-    <Dashboard />
+    <Routes>
+      <Route path={HOME_URI} element={<MainLayout />}>
+        <Route path={DASHBOARD_URI} element={<DashBoard />} />
+        <Route path={CHALLENGE_URI} element={<Challenge />} />
+      </Route>
+    </Routes>
   );
 }
 
