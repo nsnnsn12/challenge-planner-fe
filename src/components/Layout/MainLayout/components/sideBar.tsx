@@ -3,17 +3,13 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import LayersIcon from "@mui/icons-material/Layers";
-import AssignmentIcon from "@mui/icons-material/Assignment";
 import { Divider, IconButton, List, Toolbar } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CHALLENGE_URI, DASHBOARD_URI } from "../../../../constants/routes";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
-import { DRAWER_WIDTH } from "../constant";
+import { DRAWER_WIDTH, MAIN_SIDE_BAR_ITEMS, SUB_SIDE_BAR_ITEMS } from "../constant";
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -78,21 +74,6 @@ function SidebarItem({
   );
 }
 
-export const MAIN_SIDE_BAR_ITEMS = [
-  {
-    primary: "Dashboard",
-    index: 0,
-    uri: DASHBOARD_URI,
-    icon: <DashboardIcon />,
-  },
-  {
-    primary: "챌린지 목록",
-    index: 1,
-    uri: CHALLENGE_URI,
-    icon: <LayersIcon />,
-  },
-];
-
 export function MainSideBar({selectedIndex, handleClick}:SidebarProps) {
   return (
     <>
@@ -110,15 +91,6 @@ export function MainSideBar({selectedIndex, handleClick}:SidebarProps) {
     </>
   );
 }
-
-const SUB_SIDE_BAR_ITEMS = [
-  {
-    primary: "Current month",
-    index: 3,
-    uri: '',
-    icon: <AssignmentIcon />,
-  },
-];
 
 export function SubSideBar({selectedIndex, handleClick}:SidebarProps) {
   return (

@@ -3,11 +3,12 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import SideBar, { MAIN_SIDE_BAR_ITEMS } from "./components/sideBar";
+import SideBar from "./components/sideBar";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/footer";
 import AppBar from "./components/appBar";
 import Toolbar from "@mui/material/Toolbar";
+import { MAIN_SIDE_BAR_ITEMS } from "./constant";
 
 const mdTheme = createTheme();
 

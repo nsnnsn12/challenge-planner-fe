@@ -27,7 +27,7 @@ export default function Challenge() {
           <Box sx={{ borderRadius: 2, border: 1, height:'100%', width:'95%', mx:'auto' }}>완료 여부 및 남은 횟수</Box>
         </Grid>
       </Grid>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} ml={2}>
         <Button variant="outlined" startIcon={<RestoreIcon />}>
           탈퇴
         </Button>
