@@ -1,5 +1,5 @@
 import React from "react";
-import { CHALLENGE_URI, DASHBOARD_URI } from "../../../constants/routes";
+import { APPROVED_CHALLENGE_LIST_URI, CHALLENGE_LIST_URI, DASHBOARD_URI } from "../../../constants/routes";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
@@ -16,13 +16,13 @@ export const MAIN_SIDE_BAR_ITEMS = [
   {
     primary: "챌린지 목록",
     index: 3,
-    uri: CHALLENGE_URI,
+    uri: CHALLENGE_LIST_URI,
     icon: <LayersIcon />,
   },
   {
     primary: "참여 중인 챌린지 목록",
     index: 1,
-    uri: CHALLENGE_URI,
+    uri: APPROVED_CHALLENGE_LIST_URI,
     icon: <LayersIcon />,
   },
 ];
