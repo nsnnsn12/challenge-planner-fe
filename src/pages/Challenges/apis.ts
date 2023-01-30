@@ -15,7 +15,6 @@ const data = [
 ];
 
 export const getChallenges = (params: any) => {
-  console.log('getChallenges 실행', data);
     return data;
     // TODO: SERVER API
     // apiClient

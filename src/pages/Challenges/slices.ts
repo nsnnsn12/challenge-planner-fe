@@ -50,7 +50,6 @@ const sliceSaga = createSliceSaga({
         console.log('fetchChallenge실행');
         const response = yield call(getChallenges, action.payload);
         const { data } = response;
-        console.log('fetchChallenge실행', response);
         const challenges = ChallengeModel.toClass(response) as ChallengeModel[];
 
         yield put(slice.actions.fetchChallengeSuccess(challenges));
