@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Avatar, Grid, Stack } from "@mui/material";
+import { Avatar, Grid, Stack, Tooltip } from "@mui/material";
 import Button from "@mui/material/Button/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
@@ -34,7 +34,9 @@ export default function ChallengeItem({
           <Avatar>
             <AccountCircleIcon />
           </Avatar>
-          <Box>{title}</Box>
+          <Tooltip title={context}>
+            <Box>{title}</Box>
+          </Tooltip>
         </Stack>
       </Grid>
       <Grid item xs={3}>

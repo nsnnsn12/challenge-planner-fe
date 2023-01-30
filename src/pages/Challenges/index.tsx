@@ -25,11 +25,12 @@ export default function Challenges() {
     console.log('useEffect호출');
     dispatch(actions.fetchChallenge());
   }, []);
+
   return (
     <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
-      {data.map((item: any) => {
+      {data.map((item: ChallengeModel) => {
         return (
-          <ChallengeItem title={item.title} isApproved={item.isApproved} />
+          <ChallengeItem title={item.title} isApproved={item.isApproved} context={item.context} />
         );
       })}
     </Box>
