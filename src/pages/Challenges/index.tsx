@@ -30,7 +30,7 @@ export default function Challenges() {
     <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
       {data.map((item: ChallengeModel) => {
         return (
-          <ChallengeItem title={item.title} isApproved={item.isApproved} context={item.context} />
+          <ChallengeItem key={item.id} title={item.title} isApproved={item.isApproved} context={item.context} />
         );
       })}
     </Box>

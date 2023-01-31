@@ -47,9 +47,7 @@ const sliceSaga = createSliceSaga({
   caseSagas: {
     *fetchChallenge(action: PayloadAction<SearchParam | undefined>): any {
       try {
-        console.log('fetchChallenge실행');
         const response = yield call(getChallenges, action.payload);
-        const { data } = response;
         const challenges = ChallengeModel.toClass(response) as ChallengeModel[];
 
         yield put(slice.actions.fetchChallengeSuccess(challenges));

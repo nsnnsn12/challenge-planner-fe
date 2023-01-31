@@ -1,0 +1,16 @@
+{
+    "challenges": [
+        {
+            "id": "1",
+            "title": "새벽 깨우기",
+            "context": "정해진 시간 내 일찍 일어나 사진 인증",
+            "isApproved": false
+        },
+        {
+            "id": "2",
+            "title": "스터디",
+            "context": "주 3회 이상 개인 스터디 인증",
+            "isApproved": true
+        }
+    ]
+}
