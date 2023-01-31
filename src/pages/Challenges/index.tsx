@@ -7,6 +7,7 @@ import { sagaActions as actions, sliceName, reducer, saga } from "./slices";
 import { ChallengeModel } from "./models";
 import { useInjectReducer, useInjectSaga } from "@nixjs23n6/redux-injectors";
 import { selectors } from "./selectors";
+import Pagination from '@mui/material/Pagination';
 
 export default function Challenges() {
   //리듀서와 사가를 주입하면서 컴포넌트가 한 번 더 실행된다.
@@ -27,12 +28,16 @@ export default function Challenges() {
   }, []);
 
   return (
-    <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
+    <Box sx={{ width: "100%", bgcolor: "background.paper", 
+        padding:"50px 0px"
+    }}>
       {data.map((item: ChallengeModel) => {
         return (
           <ChallengeItem title={item.title} isApproved={item.isApproved} context={item.context} />
         );
       })}
+      
+      <Pagination sx={{ display:'flex', justifyContent:'center', my: '60px' }} count={10} />
     </Box>
   );
 }
