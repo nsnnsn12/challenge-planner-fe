@@ -26,7 +26,7 @@ export default function Challenges() {
     }}>
       {data.map((item: ChallengeModel) => {
         return (
-          <ChallengeItem key={item.id} title={item.title} isApproved={item.isApproved} context={item.context} />
+          <ChallengeItem key={item.id} title={item.title} isApproved={item.isApproved} context={item.context} startDate={item.startDate} endDate={item.endDate} />
         );
       })}
       

@@ -10,11 +10,11 @@ export class ChallengeModel extends BaseModel{
   context: string = '';
   isApproved: boolean = false;
   @Transform(
-    (val) => val.value && dayjs(new Date(val.value)).format(ISO_DATE_FORMAT),
+    (val) => val.value && dayjs(new Date(Number.parseInt(val.value))).format(ISO_DATE_FORMAT),
   )
   startDate: string = '';
   @Transform(
-    (val) => val.value && dayjs(new Date(val.value)).format(ISO_DATE_FORMAT),
+    (val) => val.value && dayjs(new Date(Number.parseInt(val.value))).format(ISO_DATE_FORMAT),
   )
   endDate: string = '';
 }

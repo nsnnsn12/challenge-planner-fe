@@ -9,12 +9,16 @@ interface ChallengeItemProps {
   title: string;
   context?: string;
   isApproved: boolean;
+  startDate: string;
+  endDate: string;
 }
 
 export default function ChallengeItem({
   title,
   context = "",
   isApproved,
+  startDate,
+  endDate,
 }: ChallengeItemProps) {
   return (
     <Grid container sx={{ minHeight: 50, mb: 2, my: '10px' }}>
@@ -39,7 +43,7 @@ export default function ChallengeItem({
           <Tooltip title={context} sx={{flexGrow:1}}>
             <Box>{title}</Box>
           </Tooltip>
-          <Chip label="20230131 ~ 20230213" />
+          <Chip label={`${startDate} ~ ${endDate}`}/>
         </Stack>
       </Grid>
       <Grid item xs={3}>
