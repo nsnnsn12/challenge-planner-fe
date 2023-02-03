@@ -49,7 +49,7 @@ const sliceSaga = createSliceSaga({
       try {
         const response = yield call(getChallenges, action.payload);
         const challenges = ChallengeModel.toClass(response) as ChallengeModel[];
-
+        console.log('challenges', challenges);
         yield put(slice.actions.fetchChallengeSuccess(challenges));
       } catch (err) {
         //todo err process

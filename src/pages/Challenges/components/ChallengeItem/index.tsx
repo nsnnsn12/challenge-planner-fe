@@ -1,8 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import { Avatar, Grid, Stack, Tooltip } from "@mui/material";
+import { Avatar, Chip, Grid, Stack, Tooltip } from "@mui/material";
 import Button from "@mui/material/Button/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { textAlign } from "@mui/system";
 
 interface ChallengeItemProps {
   title: string;
@@ -26,7 +27,7 @@ export default function ChallengeItem({
             width: "95%",
             mx: "auto",
             alignItems: "center",
-            pl: 2,
+            px: 2,
           }}
           direction={"row"}
           spacing={2}
@@ -34,9 +35,10 @@ export default function ChallengeItem({
           <Avatar>
             <AccountCircleIcon />
           </Avatar>
-          <Tooltip title={context}>
+          <Tooltip title={context} sx={{flexGrow:1}}>
             <Box>{title}</Box>
           </Tooltip>
+          <Chip label="20230131 ~ 20230213" />
         </Stack>
       </Grid>
       <Grid item xs={3}>

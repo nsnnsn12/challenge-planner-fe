@@ -3,7 +3,9 @@ import { classToPlain, plainToClass } from 'class-transformer';
 class BaseModel {
     static toClass(data: BaseModel, options = {}){
         try{
-            return plainToClass(this, data);
+            return plainToClass(this, data,{
+                ...options,
+            });
         }catch (error){
             // TODO: Handle error
             console.error(error);
