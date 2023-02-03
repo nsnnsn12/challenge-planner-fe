@@ -17,17 +17,18 @@ export default function ChallengeItem({
   isApproved,
 }: ChallengeItemProps) {
   return (
-    <Grid container sx={{ minHeight: 50, mb: 2 }}>
+    <Grid container sx={{ minHeight: 50, mb: 2, my: '10px' }}>
       <Grid item xs={9}>
         <Stack
+          boxShadow={2}
           sx={{
             borderRadius: 2,
-            border: 1,
             height: "100%",
             width: "95%",
             mx: "auto",
             alignItems: "center",
-            px: 2,
+            pl: 2,
+            padding: '10px',
           }}
           direction={"row"}
           spacing={2}
