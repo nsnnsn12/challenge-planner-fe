@@ -1,5 +1,5 @@
 import { createInjectorsEnhancer, forceReducerReload } from '@nixjs23n6/redux-injectors';
-import { configureStore, ThunkAction, Action, applyMiddleware } from '@reduxjs/toolkit';
+import { configureStore, ThunkAction, Action, applyMiddleware, compose } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './rootReducer';
 
@@ -16,7 +16,9 @@ declare global {
 export function makeStore(){
   let devTools = null;
   //TODO : If is Dev.
-  devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({shouldHotReload: false});
+  //devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({shouldHotReload: false});
+  const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
+devTools = composeEnhancers;
 
   const injectorEnhancer = createInjectorsEnhancer({
     createReducer,
@@ -47,4 +49,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action<string>
 >;
 
-export default store;
+
+export default store
