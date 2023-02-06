@@ -11,6 +11,7 @@ interface ChallengeItemProps {
   isApproved: boolean;
   startDate: string;
   endDate: string;
+  onClick: () => void;
 }
 
 export default function ChallengeItem({
@@ -19,9 +20,10 @@ export default function ChallengeItem({
   isApproved,
   startDate,
   endDate,
+  onClick,
 }: ChallengeItemProps) {
   return (
-    <Grid container sx={{ minHeight: 50, mb: 2, my: '10px' }}>
+    <Grid container sx={{ minHeight: 50, mb: 2, my: '10px' }} onClick={onClick}>
       <Grid item xs={9}>
         <Stack
           boxShadow={2}
