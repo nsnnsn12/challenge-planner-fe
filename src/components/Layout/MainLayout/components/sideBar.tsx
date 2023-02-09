@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { Divider, IconButton, List, Toolbar } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
@@ -119,9 +119,29 @@ interface SideBarProps {
   setAppBarNm: any;
 }
 
-export default function SideBar({ toggleDrawer, open, setAppBarNm }: SideBarProps) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
+function getSideBarIndex(url : string) {
+  let index = 0;
+  MAIN_SIDE_BAR_ITEMS.forEach(item => {
+    if(item.uri === url){
+      index = item.index;
+      return;
+    }
+  })
 
+  SUB_SIDE_BAR_ITEMS.forEach(item => {
+    if(item.uri === url){
+      index = item.index;
+      return;
+    }
+  })
+  return index;
+}
+
+export default function SideBar({ toggleDrawer, open, setAppBarNm }: SideBarProps) {
+  const location = useLocation();
+  const [selectedIndex, setSelectedIndex] = useState(getSideBarIndex(location.pathname));
+
+  
   const handleListItemClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
