@@ -4,17 +4,52 @@
             "id": "1",
             "title": "새벽 깨우기",
             "context": "정해진 시간 내 일찍 일어나 사진 인증",
-            "isApproved": false,
             "startDate": "1675155364711",
-            "endDate": "1675155364711"
+            "endDate": "1675155364711",
+            "maximumPerson": 5,
+            "participatingUsers":[
+                {
+                    "userName" : "노성규",
+                    "thumnail" : ""
+                },
+                {
+                    "userName" : "박정욱",
+                    "thumnail" : ""
+                }
+            ],
+            "authenticationType" : "writing"
         },
         {
             "id": "2",
             "title": "스터디",
             "context": "주 3회 이상 개인 스터디 인증",
-            "isApproved": true,
             "startDate": "1675155364711",
-            "endDate": "1675155364711"
+            "endDate": "1675155364711",
+            "maximumPerson": 5,
+            "currentNumberOfPerson": 5,
+            "participatingUsers":[
+                {
+                    "userName" : "홍길동",
+                    "thumnail" : ""
+                },
+                {
+                    "userName" : "가나다",
+                    "thumnail" : ""
+                },
+                {
+                    "userName" : "김개똥",
+                    "thumnail" : ""
+                },
+                {
+                    "userName" : "금나라",
+                    "thumnail" : ""
+                },
+                {
+                    "userName" : "별나라",
+                    "thumnail" : ""
+                }
+            ],
+            "authenticationType" : "check"
         }
     ]
 }

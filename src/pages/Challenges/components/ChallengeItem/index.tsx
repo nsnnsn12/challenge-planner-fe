@@ -3,28 +3,26 @@ import Box from "@mui/material/Box";
 import { Avatar, Chip, Grid, Stack, Tooltip } from "@mui/material";
 import Button from "@mui/material/Button/Button";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { textAlign } from "@mui/system";
+import { ChallengeModel } from "../../models";
 
 interface ChallengeItemProps {
-  title: string;
-  context?: string;
-  isApproved: boolean;
-  startDate: string;
-  endDate: string;
-  onClick: () => void;
+  selectItem: (item : ChallengeModel) => void;
+  data: ChallengeModel;
 }
 
-export default function ChallengeItem({
-  title,
-  context = "",
-  isApproved,
-  startDate,
-  endDate,
-  onClick,
-}: ChallengeItemProps) {
+export default function ChallengeItem({ selectItem, data }: ChallengeItemProps) {
+  const {title, context, startDate, endDate, maximumPerson, participatingUsers} = data;
+  const onClick = () => {
+    selectItem(data);
+  };
+
+  const isApproved = () =>{
+    if(maximumPerson <= participatingUsers.length) return false;
+    return true;
+  }
   return (
-    <Grid container sx={{ minHeight: 50, mb: 2, my: '10px' }} onClick={onClick}>
-      <Grid item xs={9}>
+    <Grid container sx={{ minHeight: 50, mb: 2, my: "10px" }}>
+      <Grid item xs={9} onClick={onClick}>
         <Stack
           boxShadow={2}
           sx={{
@@ -34,7 +32,7 @@ export default function ChallengeItem({
             mx: "auto",
             alignItems: "center",
             pl: 2,
-            padding: '10px',
+            padding: "10px",
           }}
           direction={"row"}
           spacing={2}
@@ -42,15 +40,15 @@ export default function ChallengeItem({
           <Avatar>
             <AccountCircleIcon />
           </Avatar>
-          <Tooltip title={context} sx={{flexGrow:1}}>
+          <Tooltip title={context} sx={{ flexGrow: 1 }}>
             <Box>{title}</Box>
           </Tooltip>
-          <Chip label={`${startDate} ~ ${endDate}`}/>
+          <Chip label={`${startDate} ~ ${endDate}`} />
         </Stack>
       </Grid>
       <Grid item xs={3}>
         <Button
-          disabled={isApproved}
+          disabled={isApproved()}
           sx={{
             borderRadius: 2,
             border: 1,

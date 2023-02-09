@@ -13,6 +13,8 @@ import ChallengeDetail from "./components/ChallengeDetail";
 export default function Challenges() {
   const [isOpen, setOpen] = useState(false);
   const dispatch = useAppDispatch();
+  const [selectedData, selectData] = useState<ChallengeModel | null>(null);
+
   useInjectReducer({ key: sliceName, reducer });
   useInjectSaga({ key: sliceName, saga });
 
@@ -22,7 +24,8 @@ export default function Challenges() {
     dispatch(actions.fetchChallenge());
   }, []);
 
-  const handleClickRow = () => {
+  const handleClickRow = (item : ChallengeModel) => {
+    selectData(item);
     setOpen(true);
   };
 
@@ -32,12 +35,12 @@ export default function Challenges() {
     }}>
       {data.map((item: ChallengeModel) => {
         return (
-          <ChallengeItem key={item.id} title={item.title} isApproved={item.isApproved} context={item.context} startDate={item.startDate} endDate={item.endDate} onClick={handleClickRow} />
+          <ChallengeItem key={item.id} data={item} selectItem={handleClickRow} />
         );
       })}
       
       <Pagination sx={{ display:'flex', justifyContent:'center', my: '60px' }} count={10} />
-      {<ChallengeDetail isOpen={isOpen} setOpen={() => setOpen(!isOpen)}></ChallengeDetail>}
+      {<ChallengeDetail isOpen={isOpen} setOpen={() => setOpen(!isOpen)} data={selectedData}></ChallengeDetail>}
     </Box>
   );
 }
