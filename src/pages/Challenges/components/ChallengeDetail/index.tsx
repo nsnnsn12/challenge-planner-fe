@@ -26,7 +26,7 @@ import { ChallengeModel } from "../../models";
 export interface ChallengeDetailProps {
   isOpen: boolean;
   setOpen: () => void;
-  data?: ChallengeModel | null;
+  data: ChallengeModel;
 }
 
 const AuthenticationType = Object.freeze({
@@ -56,13 +56,17 @@ export default function ChallengeDetail({
   setOpen,
   data,
 }: ChallengeDetailProps) {
-
+  const {title, context, startDate, endDate, maximumPerson, participatingUsers, authenticationType} = data;
+  const isApproved = () =>{
+    if(maximumPerson <= participatingUsers.length) return false;
+    return true;
+  }
   return (
     <Dialog open={isOpen} fullWidth={true} maxWidth="lg">
       <DialogTitle>
         <Stack direction="row" spacing={1} justifyContent="space-between">
-          <Box>{data?.title}</Box>
-          <Chip label={`기간 : ${data?.startDate} ~ ${data?.endDate}`} />
+          <Box>{title}</Box>
+          <Chip label={`기간 : ${startDate} ~ ${endDate}`} />
         </Stack>
       </DialogTitle>
       <DialogContent>
@@ -73,10 +77,10 @@ export default function ChallengeDetail({
               justifyContent="space-between"
               height={"100%"}
             >
-              <Box>{data?.context}</Box>
+              <Box>{context}</Box>
               <Stack direction="row" spacing={1} alignItems="center">
                 <Box>인증방식</Box>
-                {getAuthenticationType(data?.authenticationType)}
+                {getAuthenticationType(authenticationType)}
               </Stack>
             </Stack>
           </Grid>
@@ -84,11 +88,11 @@ export default function ChallengeDetail({
             <Stack direction="row" spacing={1} justifyContent="space-between">
               <Box>참여인원</Box>
               <Chip
-                label={`${data?.participatingUsers.length}/${data?.maximumPerson}`}
+                label={`${participatingUsers.length}/${maximumPerson}`}
               />
             </Stack>
             <List component="nav" aria-label="mailbox folders">
-              {data?.participatingUsers.map((item: any) => {
+              {participatingUsers.map((item: any) => {
                 return (
                   <>
                     <ListItem button>
@@ -108,7 +112,7 @@ export default function ChallengeDetail({
         </Grid>
       </DialogContent>
       <DialogActions>
-        <Button onClick={setOpen}>참여하기</Button>
+        <Button onClick={setOpen} disabled={!isApproved()}>참여하기</Button>
         <Button onClick={setOpen}>닫기</Button>
       </DialogActions>
     </Dialog>

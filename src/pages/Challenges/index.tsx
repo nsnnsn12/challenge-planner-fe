@@ -40,7 +40,7 @@ export default function Challenges() {
       })}
       
       <Pagination sx={{ display:'flex', justifyContent:'center', my: '60px' }} count={10} />
-      {<ChallengeDetail isOpen={isOpen} setOpen={() => setOpen(!isOpen)} data={selectedData}></ChallengeDetail>}
+      {selectedData && <ChallengeDetail isOpen={isOpen} setOpen={() => setOpen(!isOpen)} data={selectedData}></ChallengeDetail>}
     </Box>
   );
 }

@@ -48,7 +48,7 @@ export default function ChallengeItem({ selectItem, data }: ChallengeItemProps) 
       </Grid>
       <Grid item xs={3}>
         <Button
-          disabled={isApproved()}
+          disabled={!isApproved()}
           sx={{
             borderRadius: 2,
             border: 1,
