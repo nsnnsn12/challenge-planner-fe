@@ -9,7 +9,7 @@ import { Link, useLocation } from "react-router-dom";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { styled} from "@mui/material/styles";
 import MuiDrawer from "@mui/material/Drawer";
-import { DRAWER_WIDTH, MAIN_SIDE_BAR_ITEMS, SUB_SIDE_BAR_ITEMS } from "../constant";
+import { DRAWER_WIDTH, MAIN_SIDE_BAR_ITEMS, MenuItem, SUB_SIDE_BAR_ITEMS } from "../constant";
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -40,9 +40,7 @@ const Drawer = styled(MuiDrawer, {
 interface SidebarProps{
   selectedIndex: number;
   handleClick: (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     index: number,
-    appBarName: string
   ) => void;
 }
 
@@ -59,13 +57,13 @@ function SidebarItem({
   uri,
   icon,
   selectedIndex,
-  handleClick,
+  handleClick
 }: SidebarItemProps) {
   return (
     <Link to={uri}>
       <ListItemButton
-        selected={selectedIndex === index}
-        onClick={(event) => handleClick(event, index, primary)}
+        selected={index === selectedIndex}
+        onClick={(event) => handleClick(index)}
       >
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={primary} />
@@ -116,40 +114,30 @@ export function SubSideBar({selectedIndex, handleClick}:SidebarProps) {
 interface SideBarProps {
   toggleDrawer: () => void;
   open: boolean;
-  setAppBarNm: any;
+  selectMenu: React.Dispatch<React.SetStateAction<MenuItem>>;
+  selectedMenuItem : MenuItem;
 }
 
-function getSideBarIndex(url : string) {
-  let index = 0;
-  MAIN_SIDE_BAR_ITEMS.forEach(item => {
-    if(item.uri === url){
-      index = item.index;
-      return;
-    }
-  })
-
-  SUB_SIDE_BAR_ITEMS.forEach(item => {
-    if(item.uri === url){
-      index = item.index;
-      return;
-    }
-  })
-  return index;
-}
-
-export default function SideBar({ toggleDrawer, open, setAppBarNm }: SideBarProps) {
-  const location = useLocation();
-  const [selectedIndex, setSelectedIndex] = useState(getSideBarIndex(location.pathname));
-
+export default function SideBar({ toggleDrawer, open, selectMenu, selectedMenuItem }: SideBarProps) {
   
-  const handleListItemClick = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    index: number,
-    appBarName: string
-  ) => {
-    setSelectedIndex(index);
-    setAppBarNm(appBarName);
-  };
+  const handleClick = (index : number) => {
+    let menuItem = MAIN_SIDE_BAR_ITEMS[0];
+    MAIN_SIDE_BAR_ITEMS.forEach(item => {
+      if(item.index === index){
+        menuItem = item;
+        return;
+      }
+    })
+  
+    SUB_SIDE_BAR_ITEMS.forEach(item => {
+      if(item.index === index){
+        menuItem = item;
+        return;
+      }
+    })
+
+    selectMenu(menuItem);
+  }
 
   return (
     <Drawer variant="permanent" open={open}>
@@ -167,9 +155,9 @@ export default function SideBar({ toggleDrawer, open, setAppBarNm }: SideBarProp
       </Toolbar>
       <Divider />
       <List component="nav">
-        <MainSideBar selectedIndex={selectedIndex} handleClick={handleListItemClick}/>
+        <MainSideBar selectedIndex={selectedMenuItem.index} handleClick={handleClick}/>
         <Divider sx={{ my: 1 }} />
-        <SubSideBar selectedIndex={selectedIndex} handleClick={handleListItemClick}/>
+        <SubSideBar selectedIndex={selectedMenuItem.index} handleClick={handleClick}/>
       </List>
     </Drawer>
   );
