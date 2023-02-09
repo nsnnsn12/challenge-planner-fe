@@ -5,8 +5,14 @@ import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 
 export const DRAWER_WIDTH: number = 240;
+export interface MenuItem {
+  primary: string;
+  index : number;
+  uri : string;
+  icon : any;
+}
 
-export const MAIN_SIDE_BAR_ITEMS = [
+export const MAIN_SIDE_BAR_ITEMS : Array<MenuItem> = [
   {
     primary: "Dashboard",
     index: 0,
@@ -27,7 +33,7 @@ export const MAIN_SIDE_BAR_ITEMS = [
   },
 ];
 
-export const SUB_SIDE_BAR_ITEMS = [
+export const SUB_SIDE_BAR_ITEMS : Array<MenuItem> = [
   {
     primary: "Current month",
     index: 2,
