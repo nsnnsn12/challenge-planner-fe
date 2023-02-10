@@ -2,6 +2,44 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
+## ERROR
+개뱔환경이 맞지 않아서 `/src/story/story.ts` file 수정
+
+- 변경 전
+
+```ts
+
+...
+
+import { configureStore, ThunkAction, Action, applyMiddleware  } from '@reduxjs/toolkit';
+
+...
+
+  devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({shouldHotReload: false});
+
+'''
+
+```
+
+- 변경 후
+
+```ts
+
+...
+
+import { configureStore, ThunkAction, Action, applyMiddleware,compose  } from '@reduxjs/toolkit';
+
+...
+
+  //devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({shouldHotReload: false});
+  const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null) || compose;
+devTools = composeEnhancers;
+
+
+'''
+
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -30,6 +68,17 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
+
+
+### `npx json-server ./db.json --port 4000`
+
+Run the json-server
+
+### `json-server --watch db.json`
+
+If you installed json-server globaly.
+You start json-server
+
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
