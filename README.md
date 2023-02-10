@@ -3,7 +3,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
 ## ERROR
-개뱔환경이 맞지 않아서 `/src/story/story.ts` file 수정
+개발환경이 맞지 않아서 `/src/story/story.ts` file 수정
 
 - 변경 전
 
